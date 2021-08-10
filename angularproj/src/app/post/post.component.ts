@@ -64,9 +64,11 @@ export class PostComponent implements OnInit {
 
 
   public getPostById(){
-    this.postSubscription = this.flaskApiService.getPost(this.currentId).subscribe( res => {
+    this.postSubscription = this.flaskApiService.getPost(this.currentId).subscribe( (res:Post) => {
       this.post = (<any>res)["data"];
-      console.log(this.post + "OKAYYY")
+      // console.log(this.post);
+      console.log("*******************")
+      console.log(res);
       // this.post = (<any>res)["data"]; //check res["data"];
       console.log("Hello" + this.post)
       this.editForm.setValue({

@@ -12,7 +12,7 @@ export class FlaskapiService {
   //   throw new Error('Method not implemented.');
   // }
 
-  constructor(private httpClient: HttpClient) { }
+constructor(private httpClient: HttpClient) { }
 public server:string = "http://localhost:5000/api/";
 
 public getPosts(){
@@ -21,7 +21,7 @@ public getPosts(){
 
 public getPost(postId : string) {
   // return this.httpClient.get<Post>(this.server + `post/9`);
-  return this.httpClient.get<Post>(this.server + "post/" + postId); //`post/$(postId)`
+  return this.httpClient.get<Post>(this.server + `post/$(postId)`); //`post/$(postId)` "post/" + postId
 }
 
 public addPost(postObj: Post, image: any){

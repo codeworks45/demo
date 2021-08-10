@@ -1,5 +1,6 @@
 from flask import Flask, request,jsonify
 import json 
+import sys
 from flask_mysqldb import MySQL
 
 #import flask_mysqldb
@@ -60,6 +61,8 @@ def index():
         posts = cur.fetchall()
         # return jsonify({"posts" : posts})
         return jsonify(data = posts )
+        # list=[{"data": [{"id" : posts[0], "title": posts[1], "content":posts[2], "cover": posts[3], "covername": posts[4]}]}]
+        # return jsonify(data = list)
 
 # @app.route("/api/posts", methods=["GET"])
 # def index():
@@ -111,6 +114,10 @@ def addpost():
 
             return jsonify(data = "The post was created successfully! ") 
 
+
+
+
+
 @app.route("/api/post/<id>", methods=["GET"])
 def singlepost(id):
     cur = mysql.connection.cursor()
@@ -118,8 +125,12 @@ def singlepost(id):
     record = cur.fetchone()  
     # record = request.get_json["record"]  
     # print(type(record)) 
-    
-    return jsonify({"data": record})
+    # print(record)
+    # return jsonify({"data" : record} )
+    # return jsonify({"data": {"id" : record[0], "title": record[1], "content":record[2], "cover": record[3], "covername": record[4]}})
+    # list=[{"data": {"id" : record[0], "title": record[1], "content":record[2], "cover": record[3], "covername": record[4]}}]
+    return jsonify(data = record)
+
 
 @app.route("/api/editfullpost/<id>", methods=["PUT"])
 def editfullpost(id):
